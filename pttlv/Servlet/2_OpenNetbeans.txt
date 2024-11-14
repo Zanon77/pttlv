@@ -1,0 +1,4 @@
+Step 2: Create a New Project in NetBeans
+Open NetBeans and create a new Java Web Application project. Name it (e.g., UserApp).
+Select Apache Tomcat as the server.
+Choose Java EE as the framework.

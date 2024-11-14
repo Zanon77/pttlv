@@ -1,0 +1,28 @@
+/* Basic table styling */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Styling for hover effect */
+table tr td:hover {
+    background-color: #e6f7ff; /* Light blue for hover */
+}
+
+/* Column hover effect using nth-child */
+table tr:hover td:nth-child(1) { background-color: #ffcccc; } /* Red for Column 1 */
+table tr:hover td:nth-child(2) { background-color: #ccffcc; } /* Green for Column 2 */
+table tr:hover td:nth-child(3) { background-color: #ccccff; } /* Blue for Column 3 */
+table tr:hover td:nth-child(4) { background-color: #fff2cc; } /* Yellow for Column 4 */

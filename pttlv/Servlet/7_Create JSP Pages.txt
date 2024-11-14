@@ -1,0 +1,40 @@
+Step 7: Create JSP Pages
+user-list.jsp: Display the list of users and a form for adding new users.
+
+<!-- web/user-list.jsp -->
+<html>
+<head>
+    <title>User List</title>
+</head>
+<body>
+    <h1>User List</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Country</th>
+        </tr>
+        <c:forEach var="user" items="${userList}">
+            <tr>
+                <td>${user.id}</td>
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+                <td>${user.country}</td>
+            </tr>
+        </c:forEach>
+    </table>
+
+    <h2>Add New User</h2>
+    <form action="UserServlet" method="post">
+        Name: <input type="text" name="name" required><br>
+        Email: <input type="email" name="email" required><br>
+        Country: <input type="text" name="country" required><br>
+        <input type="submit" value="Add User">
+    </form>
+</body>
+</html>
+
+
+Step 8: Run the Application
+Deploy and Run: Right-click on the project in NetBeans and select Run. This should launch your server and open the application in the browser.

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML5 Bar Graph</title>
+</head>
+<body>
+<canvas id="graphSpace" width="800" height="400"></canvas>
+<script>
+var graphCanvas = document.getElementById('graphSpace');
+// Ensure that the element is available within the DOM
+if (graphCanvas && graphCanvas.getContext) {
+    // Open a 2D context within the canvas
+    var context = graphCanvas.getContext('2d');
+
+    
+    var data = new Array(5);
+    data[0] = "Gixxer,155";
+    data[1] = "R1,120";
+    data[2] = "BWM,80";
+    data[3] = "Bajaj,230";
+    data[4] = "Ninja,50";
+
+    // Draw the bar chart
+    drawBarChart(context, data, 50, 50, (graphCanvas.height - 50), 50);
+}
+
+function drawBarChart(context, data, startX, barWidth, chartHeight, markDataIncrementsIn) {
+    // Draw the x and y axes
+    context.lineWidth = "1.0";
+    var startY = 380;
+    drawLine(context, startX, startY, startX, 30);
+    drawLine(context, startX, startY, 570, startY);
+    context.lineWidth = "0.0";
+    var maxValue = 0;
+    for (var i = 0; i < data.length; i++) {
+        // Extract the data
+        var values = data[i].split(",");
+        var name = values[0];
+        var height = parseInt(values[1]);
+        if (parseInt(height) > parseInt(maxValue)) maxValue = height;
+
+        // Write the data to the chart
+        context.fillStyle = "#007bff"; // Set bar color to blue
+        drawRectangle(context, startX + (i * barWidth) + i, (chartHeight - height), barWidth, height, true);
+
+        // Add the column title to the x-axis
+        context.textAlign = "left";
+        context.fillStyle = "#000";
+        context.fillText(name, startX + (i * barWidth) + i, chartHeight + 10, 200);
+    }
+
+    // Add some data markers to the y-axis
+    var numMarkers = Math.ceil(maxValue / markDataIncrementsIn);
+    context.textAlign = "right";
+    context.fillStyle = "#000";
+    var markerValue = 0;
+    for (var i = 0; i < numMarkers; i++) {
+        context.fillText(markerValue, (startX - 5), (chartHeight - markerValue), 50);
+        markerValue += markDataIncrementsIn;
+    }
+
+    context.fillStyle = "#000"; // Black color
+    context.font = "24px Arial"; // Big font size
+    context.textAlign = "center";
+    context.fillText("MADE BY ", graphCanvas.width / 2, graphCanvas.height - 20);
+}
+
+// drawLine - draws a line on a canvas context from the start point to the end point
+function drawLine(contextO, startx, starty, endx, endy) {
+    contextO.beginPath();
+    contextO.moveTo(startx, starty);
+    contextO.lineTo(endx, endy);
+    contextO.closePath();
+    contextO.stroke();
+}
+
+// drawRectangle - draws a rectangle on a canvas context using the dimensions specified
+function drawRectangle(contextO, x, y, w, h, fill) {
+    contextO.beginPath();
+    contextO.rect(x, y, w, h);
+    contextO.closePath();
+    contextO.stroke();
+    if (fill) contextO.fill();
+}
+</script>
+</body>
+</html>

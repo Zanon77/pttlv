@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        header {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+        main {
+            margin-top: 20px;
+        }
+        .content-section {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to My Dynamic Website</h1>
+    </header>
+
+    <main>
+        <section class="content-section">
+            <h2>User Information Form</h2>
+            <form id="userForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+        <section class="content-section" id="userInfoSection">
+            <h2>User Information</h2>
+            <p id="userInfo"></p>
+        </section>
+
+        <section class="content-section">
+            <button id="updateContentBtn">Update Content</button>
+            <p id="dynamicContent">This is a dynamic content section. Click the button to update this text.</p>
+        </section>
+    </main>
+
+    <script>
+        // Handle the user information form submission
+        document.getElementById("userForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get values from input fields
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+
+            // Update the user info section
+            document.getElementById("userInfo").innerHTML = `<strong>Name:</strong> ${name}<br><strong>Email:</strong> ${email}`;
+
+            // Clear the form
+            document.getElementById("userForm").reset();
+        });
+
+        // Handle dynamic content update on button click
+        document.getElementById("updateContentBtn").addEventListener("click", function() {
+            const dynamicContent = document.getElementById("dynamicContent");
+            dynamicContent.innerHTML = "The content has been updated! This is dynamic content that changes on button click.";
+        });
+    </script>
+
+</body>
+</html>
